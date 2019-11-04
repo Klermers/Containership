@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jeremey\\source\\repos\\Containership\\Containership\\Containership\\Containership.csproj",
+      "projectUniqueName": "C:\\Users\\Jeremey\\Source\\Repos\\Klermers\\Containership\\Containership\\Containership\\Containership.csproj",
       "projectName": "Containership",
-      "projectPath": "C:\\Users\\Jeremey\\source\\repos\\Containership\\Containership\\Containership\\Containership.csproj",
+      "projectPath": "C:\\Users\\Jeremey\\Source\\Repos\\Klermers\\Containership\\Containership\\Containership\\Containership.csproj",
       "packagesPath": "C:\\Users\\Jeremey\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jeremey\\source\\repos\\Containership\\Containership\\Containership\\obj\\",
+      "outputPath": "C:\\Users\\Jeremey\\Source\\Repos\\Klermers\\Containership\\Containership\\Containership\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
