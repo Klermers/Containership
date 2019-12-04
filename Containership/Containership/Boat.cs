@@ -32,7 +32,7 @@ namespace Containership
             int amountcontainerslenght = this.length / totalcontainerlenght;
             int amountcontainerswidth = this.width / totalcontainerwidth;
 
-            boatcapacity = new Boat[totalcontainerwidth,totalcontainerlenght,];
+            boatcapacity = new Boat[totalcontainerwidth,totalcontainerlenght,38];
         }
 
     }
