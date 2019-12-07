@@ -6,10 +6,11 @@ namespace Containership
 {
     class Container
     {
-        private int lenght;
-        private int width;
-        private int height;
-        private int weight;
+        private static int lenght;
+        private static int width;
+        private static int height;
+        private int z_coordinate;
+        private decimal weight;
         private int currentcapacity;
         private int maxcapacity;
 
@@ -28,9 +29,19 @@ namespace Containership
             get { return height; }
         }
 
-        public int Weight
+        public decimal Weight
         {
             get { return weight; }
+        }
+
+        public int Y_coordinate
+        {
+            get { return z_coordinate; }
+        }
+
+        public Container(int z_position)
+        {
+            this.z_coordinate = z_position;
         }
 
     }
