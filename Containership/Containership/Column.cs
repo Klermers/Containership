@@ -11,7 +11,7 @@ namespace Containership
         private static int y_as = 0;
         private readonly int x_position;
         private readonly int y_position;
-        private decimal totalWeight;
+        private decimal totalWeight = 0;
         private List<Container> ColumnContainers = new List<Container>();
 
         public int X_position
@@ -58,7 +58,7 @@ namespace Containership
             decimal newtotalweight = 0;
 
             var newcontainerlist = from container in ColumnContainers
-                                   where container.Y_coordinate > 1
+                                   where container.Z_coordinate > 1
                                    select container;
 
             foreach(var container in newcontainerlist)
@@ -75,7 +75,7 @@ namespace Containership
             container = new Container(z_position);
             var newtotalweight = WeightOnContainer() + container.Weight;
 
-            if (newtotalweight < 120)
+            if (newtotalweight < 116)
             {
                 ColumnContainers.Add(container);
                 CalculateTheTotalWeight();

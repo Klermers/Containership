@@ -7,7 +7,6 @@ namespace Containership
     class Grid
     {
         private Column[] grid;
-        private decimal
 
         public Grid(int shiplength)
         {
@@ -18,8 +17,35 @@ namespace Containership
         {
             //One side is heavier than the other
             //Het gewicht van de column is te groot maar dat check je in column
-            foreach
+            foreach (var column in grid)
+            {
+
+            }
             return false;
+        }
+
+        public Column TheLightestColumnInGrid()
+        {
+            decimal lowestweight;
+
+            foreach(var column in grid)
+            {
+                if(lowestweight > column.TotalWeight)
+                {
+
+                }
+            }
+            return;
+        }
+
+        public decimal CalculateLeftWeight()
+        {
+            return
+        }
+
+        public decimal CalculateRightWeight()
+        {
+            return
         }
     }
 }
