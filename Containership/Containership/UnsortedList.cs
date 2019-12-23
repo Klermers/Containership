@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Containership
 {
-    class UnsortedList
+    public class UnsortedList
     {
         private List<Container> unsortedcontainerslist = new List<Container>();
 
@@ -35,20 +35,20 @@ namespace Containership
                     containers.Add(container);
                 }
             }
-            return containers;
+            return SortContainersWeight(containers);
         }
 
         private List<Container> GetListColdContainer()
         {
-            List<Container> coldcontainer = new List<Container>();
+            List<Container> coldcontainers = new List<Container>();
             foreach (var container in unsortedcontainerslist)
             {
                 if (GetContainerType(container) == ContainerType.ColdContainer)
                 {
-                    coldcontainer.Add(container);
+                    coldcontainers.Add(container);
                 }
             }
-            return coldcontainer;
+            return SortContainersWeight(coldcontainers);
         }
 
         private List<Container> GetListRichContainers()
@@ -61,7 +61,7 @@ namespace Containership
                     richcontainers.Add(container);
                 }
             }
-            return richcontainers;
+            return SortContainersWeight(richcontainers);
         }
 
         private ContainerType GetContainerType(Container container)

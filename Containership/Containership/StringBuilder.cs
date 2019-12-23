@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Containership;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Containerschip
 {
     public class StringBuilder
     {
-        public string BuildURL(List<Row> rows, int width, int length)
+        public string BuildURL(List<Column> columns, int width, int length)
         {
             string url = $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length={length}&width={width}";
             string urlStacks = "";

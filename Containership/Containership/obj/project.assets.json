@@ -8,23 +8,23 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {},
+    "C:\\Users\\Jeremey\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\Source\\Repos\\Klermers\\Containership\\Containership\\Containership\\Containership.csproj",
+      "projectUniqueName": "C:\\Users\\Jeremey\\Source\\Repos\\Klermers\\Containership\\Containership\\Containership\\Containership.csproj",
       "projectName": "Containership",
-      "projectPath": "C:\\Users\\Asus\\Source\\Repos\\Klermers\\Containership\\Containership\\Containership\\Containership.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\Source\\Repos\\Klermers\\Containership\\Containership\\Containership\\obj\\",
+      "projectPath": "C:\\Users\\Jeremey\\Source\\Repos\\Klermers\\Containership\\Containership\\Containership\\Containership.csproj",
+      "packagesPath": "C:\\Users\\Jeremey\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jeremey\\Source\\Repos\\Klermers\\Containership\\Containership\\Containership\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jeremey\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

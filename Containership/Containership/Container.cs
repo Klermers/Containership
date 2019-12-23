@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Containership
 {
-    class Container
+    public class Container
     {
         private static int lenght;
         private static int width;
@@ -51,6 +51,10 @@ namespace Containership
         public Container(int z_position)
         {
             this.z_coordinate = z_position;
+        }
+
+        public Container()
+        {
         }
 
     }

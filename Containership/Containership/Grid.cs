@@ -4,48 +4,66 @@ using System.Text;
 
 namespace Containership
 {
-    class Grid
+    public class Grid
     {
+
         private Column[] grid;
+
+        public int Y_coordinate
+        {
+            get;
+            private set;
+        }
 
         public Grid(int shiplength)
         {
             grid = new Column[shiplength];
+            for (int i = 1; i <= shiplength; i++ )
+            {
+                Column column = new Column(i);
+                grid[i - 1] = column;
+            }
         }
 
         public bool IsContainerAddedToColumnOfGrid()
         {
-            //One side is heavier than the other
-            //Het gewicht van de column is te groot maar dat check je in column
-            foreach (var column in grid)
-            {
-
-            }
-            return false;
+            return true;
         }
 
         public Column TheLightestColumnInGrid()
         {
-            decimal lowestweight;
-
+            Column lowestweightcolumn = grid[0];
             foreach(var column in grid)
             {
-                if(lowestweight > column.TotalWeight)
+                if(column.TotalWeight < lowestweightcolumn.TotalWeight)
                 {
-
+                    lowestweightcolumn = column;
                 }
             }
-            return;
+            return lowestweightcolumn;
         }
 
         public decimal CalculateLeftWeight()
         {
-            return
-        }
-
-        public decimal CalculateRightWeight()
-        {
-            return
+            decimal leftweight = 0m;
+            if (grid.Length % 2 != 0)
+            {
+                int lefthalf = (grid.Length-1) /2;
+                for(int i = 0; i <= lefthalf; i++)
+                {
+                    leftweight += grid[i].TotalWeight;
+                }
+                return leftweight;
+            }
+            else
+            {
+                int lefthalf = (grid.Length) / 2;
+                for (int i = 0; i <= lefthalf; i++)
+                {
+                    leftweight += grid[i].TotalWeight;
+                }
+                return leftweight;
+            }
         }
     }
 }

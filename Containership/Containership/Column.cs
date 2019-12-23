@@ -5,11 +5,9 @@ using System.Linq;
 
 namespace Containership
 {
-    class Column
+    public class Column
     {
-        private static int x_as = 0;
         private static int y_as = 0;
-        private readonly int x_position;
         private readonly int y_position;
         private decimal totalWeight = 0;
         private List<Container> ColumnContainers = new List<Container>();
@@ -29,18 +27,9 @@ namespace Containership
             get { return totalWeight; }
         }
 
-        public Column(int width, int lenght)
+        public Column(int yposition)
         {
-            if(y_as <= lenght)
-            {
-                y_as += 1;
-                y_position = y_as;
-            }
-            else if(x_as <= width)
-            {
-                x_as += 1;
-                y_position += 1;
-            }
+            y_position = yposition;
         }
 
         private void CalculateTheTotalWeight()

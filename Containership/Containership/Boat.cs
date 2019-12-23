@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Containership
 {
-    class Boat
+    public class Boat
     {
         private string name;
         private int length;
@@ -24,6 +24,17 @@ namespace Containership
         }
 
         private void BoatCapicityCalculator()
+        {
+            CapacityGrid = new Grid[width];
+            for(int i = 1; i <= width;i++)
+            {
+                Grid grid = new Grid(length);
+                CapacityGrid[i-1] = grid;
+            }
+
+        }
+
+        public void ContainerOntoShip()
         {
 
         }
