@@ -9,7 +9,7 @@ namespace Containership
 
         private Column[] grid;
 
-        public int Y_coordinate
+        public int X_coordinate
         {
             get;
             private set;

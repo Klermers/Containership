@@ -21,9 +21,10 @@ namespace Containership
             this.length = length;
             this.width = width;
             this.weight = weight;
+            BoatCapicityCalculator(width);
         }
 
-        private void BoatCapicityCalculator()
+        private void BoatCapicityCalculator(int width)
         {
             CapacityGrid = new Grid[width];
             for(int i = 1; i <= width;i++)
@@ -31,12 +32,17 @@ namespace Containership
                 Grid grid = new Grid(length);
                 CapacityGrid[i-1] = grid;
             }
-
         }
 
-        public void ContainerOntoShip()
+        public bool ContainerOntoShip()
         {
+            foreach(var grid in CapacityGrid)
+            {
+                if(grid.IsContainerAddedToColumnOfGrid() == true)
+                {
 
+                }
+            }
         }
 
     }

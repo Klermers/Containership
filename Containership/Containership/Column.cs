@@ -32,16 +32,6 @@ namespace Containership
             y_position = yposition;
         }
 
-        private void CalculateTheTotalWeight()
-        {
-            totalWeight = 0;
-
-            foreach(var container in ColumnContainers)
-            {
-                totalWeight += container.Weight;
-            }
-        }
-
         private decimal WeightOnContainer()
         {
             decimal newtotalweight = 0;
@@ -62,12 +52,11 @@ namespace Containership
         {
             int z_position = ColumnContainers.Count() + 1;
             container = new Container(z_position);
-            var newtotalweight = WeightOnContainer() + container.Weight;
 
-            if (newtotalweight < 116)
+            if (WeightOnContainer() + container.Weight < 116)
             {
                 ColumnContainers.Add(container);
-                CalculateTheTotalWeight();
+                totalWeight += container.Weight;
                 return true;
             }
             else
