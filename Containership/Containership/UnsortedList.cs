@@ -30,7 +30,7 @@ namespace Containership
             List<Container> containers = new List<Container>();
             foreach(var container in unsortedcontainerslist)
             {
-                if (GetContainerType(container) == ContainerType.Container)
+                if (GetContainerType(container) == ContainerType.Normal)
                 {
                     containers.Add(container);
                 }
@@ -43,7 +43,7 @@ namespace Containership
             List<Container> coldcontainers = new List<Container>();
             foreach (var container in unsortedcontainerslist)
             {
-                if (GetContainerType(container) == ContainerType.ColdContainer)
+                if (GetContainerType(container) == ContainerType.Coolable)
                 {
                     coldcontainers.Add(container);
                 }
@@ -56,7 +56,7 @@ namespace Containership
             List<Container> richcontainers = new List<Container>();
             foreach (var container in unsortedcontainerslist)
             {
-                if (GetContainerType(container) == ContainerType.RichContainer)
+                if (GetContainerType(container) == ContainerType.Valuable)
                 {
                     richcontainers.Add(container);
                 }
@@ -66,29 +66,29 @@ namespace Containership
 
         private ContainerType GetContainerType(Container container)
         {
-            if (container.ContainerType == ContainerType.Container)
+            if (container.ContainerType == ContainerType.Normal)
             {
-                return ContainerType.Container;
+                return ContainerType.Coolable;
             }
-            else if (container.ContainerType == ContainerType.ColdContainer)
+            else if (container.ContainerType == ContainerType.Coolable)
             {
-                return ContainerType.ColdContainer;
+                return ContainerType.Coolable;
             }
             else
             {
-                return ContainerType.RichContainer;
+                return ContainerType.Valuable;
             }
         }
 
         public void SortListContainers()
         {
-            foreach (var container in GetListColdContainer())
-            {
-                SortedContainerList.Add(container);
-            }
             foreach (var coldcontainer in GetListContainer())
             {
                 SortedContainerList.Add(coldcontainer);
+            }
+            foreach (var container in GetListColdContainer())
+            {
+                SortedContainerList.Add(container);
             }
             foreach(var richcontainer in GetListRichContainers())
             {

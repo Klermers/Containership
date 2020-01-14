@@ -10,7 +10,7 @@ namespace Containership
         private static int width;
         private static int height;
         private int z_coordinate;
-        private decimal weight = 0.4m;
+        private int weight = 4;
 
         public ContainerType ContainerType
         {
@@ -36,7 +36,7 @@ namespace Containership
             private set { height = value; }
         }
 
-        public decimal Weight
+        public int Weight
         {
             get { return weight; }
             private set { weight = value; }
@@ -48,9 +48,10 @@ namespace Containership
             private set { z_coordinate = value; }
         }
 
-        public Container(int z_position)
+        public Container(ContainerType containertype, int weight)
         {
-            this.z_coordinate = z_position;
+            ContainerType = containertype;
+            Weight = weight;
         }
 
         public Container()

@@ -6,10 +6,9 @@ namespace Containership
 {
     public enum ContainerType
     {
-        Container,
-        ColdContainer,
-        RichContainer,
-        None
+        Normal = 1,
+        Valuable,
+        Coolable
     }
 
 }

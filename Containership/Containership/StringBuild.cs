@@ -1,15 +1,14 @@
-﻿using Containership;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Containerschip
+namespace Containership
 {
-    public class StringBuilder
+    public class StringBuild
     {
-        public string BuildURL(List<Column> columns, int width, int length)
+        public string BuildURL(List<Row> rows, int width, int length)
         {
             string url = $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length={length}&width={width}";
             string urlStacks = "";
@@ -22,8 +21,8 @@ namespace Containerschip
 
                 for (int y = 0; y < length; y++)
                 {
-                    stackUrlStacks += CheckURL($",{rows[x].Stacks[y].BuildStacksURL()}", ",");
-                    stackUrlWeights += CheckURL($",{rows[x].Stacks[y].BuildWeigthsURL()}", ",");
+                    stackUrlStacks += CheckURL($",{rows[x].Columns[y].BuildStacksURL()}", ",");
+                    stackUrlWeights += CheckURL($",{rows[x].Columns[y].BuildWeigthsURL()}", ",");
                 }
 
                 urlStacks += CheckURL($"/{stackUrlStacks.Substring(1)}", "/");
