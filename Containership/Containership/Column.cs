@@ -32,34 +32,26 @@ namespace Containership
         }
 
 
-        public bool isContainerAdded(Container container)
+        public bool IsContainerAdded(Container container)
         {
-            int z_position = columnContainers.Count() + 1;
-            if (WeightOnContainer() + container.Weight < 116)
+            if (WeightOnContainer() + container.Weight <= 120)
             {
                 columnContainers.Add(container);
-                return false;
-            }
-            else
-            {
-                columnContainers.Add(container);
+                totalWeight += container.Weight;
                 return true;
             }
+            return false;
         }
 
         private int WeightOnContainer()
         {
             int newtotalweight = 0;
+            List<Container> newcontainerlist = new List<Container>();
 
-            var newcontainerlist = from container in columnContainers
-                                   where container.Z_coordinate > 1
-                                   select container;
-
-            foreach(var container in newcontainerlist)
+            for (int position = 1; position <= columnContainers.Count; position++)
             {
-                newtotalweight += container.Weight;
+                newtotalweight += columnContainers[position - 1].Weight;
             }
-
             return newtotalweight;
         }
 

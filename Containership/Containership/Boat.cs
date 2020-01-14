@@ -10,7 +10,7 @@ namespace Containership
         private int length;
         private int width;
         private int weight;
-        private List<Row> Rows;
+        private List<Row> Rows = new List<Row>();
         private List<Container> InsertContainers = new List<Container>();
         private List<Container> RemainingContainers = new List<Container>();
         UnsortedList unsortedlist = new UnsortedList();

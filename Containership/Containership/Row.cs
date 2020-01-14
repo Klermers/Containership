@@ -6,7 +6,7 @@ namespace Containership
 {
     public class Row
     {
-
+        private static bool left = true;
         private List<Column> columns = new List<Column>();
 
         public List<Column> Columns
@@ -24,24 +24,11 @@ namespace Containership
 
         public bool AddNormal(Container container)
         {
-            if(RowBalance() == 1)
+            for (int position = 0; position < columns.Count; position++)
             {
-                for (int position = 0; position < (columns.Count / 2); position++)
+                if (columns[position].TotalWeight == LowestColumnWeight())
                 {
-                    if (columns[position].TotalWeight == LowestColumnWeight())
-                    {
-                        return columns[position].isContainerAdded(container);
-                    }
-                }
-            }
-            else
-            {
-                for (int position = columns.Count - 1; position > Math.Ceiling((decimal)columns.Count / 2) - 1; position--)
-                {
-                    if (columns[position].TotalWeight == LowestColumnWeight())
-                    {
-                        return columns[position].isContainerAdded(container);
-                    }
+                    return columns[position].IsContainerAdded(container);
                 }
             }
             return false;
@@ -49,29 +36,13 @@ namespace Containership
 
         public bool AddValuable(Container container)
         {
-            if (RowBalance() == 1)
+            for (int position = 0; position < columns.Count; position++)
             {
-                for (int position = 0; position < (columns.Count / 2); position++)
+                if (columns[position].IsThereARichContainer() == false)
                 {
-                    if(columns[position].IsThereARichContainer() == false)
+                    if (IsValuableAddible(position) == true)
                     {
-                        if (IsValuableAddible(position) == true)
-                        {
-
-                        }
-                    }
-                }
-            }
-            else
-            {
-                for (int position = columns.Count - 1; position > Math.Ceiling((decimal)columns.Count / 2) - 1; position--)
-                {
-                    if(columns[position].IsThereARichContainer() == false)
-                    {
-                        if (IsValuableAddible(position) == true)
-                        {
-
-                        }
+                        return columns[position].IsContainerAdded(container);
                     }
                 }
             }
@@ -80,13 +51,13 @@ namespace Containership
 
         public bool AddCold(Container container)
         {
-            return columns[0].isContainerAdded(container); ;
+            return columns[0].IsContainerAdded(container);
         }
 
         private bool IsValuableAddible(int position)
         {
-            if (columns[position].Containers.Count >= columns[position - 1].Containers.Count
-              || columns[position].Containers.Count >= columns[position + 1].Containers.Count || position == 0 || position == columns.Count - 1)
+            if (position == 0 ||position == columns.Count -1||columns[position].Containers.Count >= columns[position - 1].Containers.Count
+              || columns[position].Containers.Count >= columns[position + 1].Containers.Count)
             {
                 return true;
             }
@@ -105,33 +76,6 @@ namespace Containership
             }
 
             return weight;
-        }
-
-
-        private int RowBalance()
-        {
-            int leftWeight = 0;
-            int rightWeight = 0;
-
-            for (int i = 0; i < (columns.Count / 2); i++)
-            {
-                leftWeight += columns[i].TotalWeight;
-            }
-
-            for (int i = columns.Count - 1; i > Math.Ceiling((decimal)columns.Count / 2) - 1; i--)
-            {
-                rightWeight += columns[i].TotalWeight;
-            }
-
-            if (leftWeight > rightWeight * 1.2)
-            {
-                return  1;
-            }
-            else if(rightWeight > leftWeight * 1.2)
-            {
-                return 2;
-            }
-            return 1;
         }
 
         private int LowestColumnWeight()
