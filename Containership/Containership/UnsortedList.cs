@@ -15,9 +15,12 @@ namespace Containership
             private set;
         }
 
-        public void AddContainer(Container container)
+        public void AddContainers(List<Container> containers)
         {
-            unsortedcontainerslist.Add(container);
+            foreach(var container in containers)
+            {
+                unsortedcontainerslist.Add(container);
+            }
         }
 
         private List<Container> SortContainersWeight(List<Container> containers)

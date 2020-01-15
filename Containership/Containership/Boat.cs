@@ -13,8 +13,7 @@ namespace Containership
         private List<Row> Rows = new List<Row>();
         private List<Container> InsertContainers = new List<Container>();
         private List<Container> RemainingContainers = new List<Container>();
-        UnsortedList unsortedlist = new UnsortedList();
-        private bool leftplacement = true;
+        private UnsortedList unsortedlist = new UnsortedList();
 
         public StringBuild StringBuilder
         {
@@ -44,32 +43,82 @@ namespace Containership
         {
             foreach(var container in InsertContainers)
             {
-                for(int position = 0; position < length; position++)
+                for(int position = 0; position <= length; position++)
                 {
-                    if(Rows[position].GetWeight() == LowestRowWeight())
+                    if(container.ContainerType == ContainerType.Normal)
                     {
-                        if (container.ContainerType == ContainerType.Normal)
+                        if(Rows[position].GetWeight() == LowestRowWeight())
                         {
-                            if(Rows[position].AddNormal(container))
+                            if (IsNormalContainerAdded(position, container) == false)
                             {
+                                RemainingContainers.Add(container);
                                 break;
                             }
-                        }
-                        else if (container.ContainerType == ContainerType.Valuable)
-                        {
-                            if(Rows[position].AddValuable(container) == true)
+                            else
                             {
                                 break;
                             }
                         }
                     }
-                    if (container.ContainerType == ContainerType.Valuable)
+                    if(position != Rows.Count)
                     {
-                        Rows[position].AddCold(container);
+                        if (container.ContainerType == ContainerType.Coolable)
+                        {
+                            if(IsColdAdded(position, container) == false)
+                            {
+                                RemainingContainers.Add(container);
+                                break;
+                            }
+                        }
+                        else if(container.ContainerType == ContainerType.Coolable)
+                        {
+                            if(IsValuableAdded(position, container) == false)
+                            {
+                                RemainingContainers.Add(container);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        RemainingContainers.Add(container);
                         break;
                     }
                 }
             }
+        }
+
+        private bool IsNormalContainerAdded(int position, Container container)
+        {
+            if (Rows[position].GetWeight() == LowestRowWeight())
+            {
+                if (Rows[position].AddNormal(container) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool IsValuableAdded(int position, Container container)
+        {
+            if (Rows[position].AddValuable(container) == true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsColdAdded(int position, Container container)
+        {
+            if (Rows[position].GetColdColumnWeight() == LowestColdColumn())
+            {
+                if (Rows[position].AddCold(container) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void AddFilteredContainers()
@@ -78,18 +127,16 @@ namespace Containership
             InsertContainers = unsortedlist.SortedContainerList;
         }
 
-        public void AddContainerToUnsorted(string typestring,int weight)
+        public void AddContainersToUnsorted(List<Container> containers)
         {
-            ContainerType type = (ContainerType)Enum.Parse(typeof(ContainerType), typestring);
-            Container container = new Container(type, weight);
-            unsortedlist.AddContainer(container);
+            unsortedlist.AddContainers(containers);
         }
 
         public string CheckRemainingContainers()
         {
             if(RemainingContainers.Count > 0)
             {
-                return $"{RemainingContainers.Count} arent placed into the boat.";
+                return $"{RemainingContainers.Count} aren't placed into the boat.";
             }
             return null;
         }
@@ -127,11 +174,11 @@ namespace Containership
 
             if(weight < this.weight/2)
             {
-                return $"There isnt enough weight on the boat";
+                return $"There isnt enough weight for the boat";
             }
             else if(weight > this.weight)
             {
-                return $"There is too much weight on the boat";
+                return $"There is too much weight for the boat";
             }
             return null;
         }
@@ -145,6 +192,16 @@ namespace Containership
                 {
                     lowestweight = row.GetWeight();
                 }
+            }
+            return lowestweight;
+        }
+
+        private int LowestColdColumn()
+        {
+            int lowestweight = 200;
+            foreach(var row in Rows)
+            {
+                lowestweight = row.GetColdColumnWeight();
             }
             return lowestweight;
         }

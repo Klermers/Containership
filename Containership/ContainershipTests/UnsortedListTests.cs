@@ -18,13 +18,15 @@ namespace Containership.Tests
             Container container15 = new Container(ContainerType.Normal, 15);
             Container container20= new Container(ContainerType.Normal, 20);
             List<Container> expected = new List<Container>();
+            List<Container> containers = new List<Container>();
             expected.Add(container20);
             expected.Add(container15);
             expected.Add(container10);
+            containers.Add(container15);
+            containers.Add(container10);
+            containers.Add(container20);
             //Act
-            unsortedlist.AddContainer(container15);
-            unsortedlist.AddContainer(container10);
-            unsortedlist.AddContainer(container20);
+            unsortedlist.AddContainers(containers);
             unsortedlist.SortListContainers();
             //Assert
             CollectionAssert.AreEqual(expected, unsortedlist.SortedContainerList);
@@ -39,13 +41,15 @@ namespace Containership.Tests
             Container container15 = new Container(ContainerType.Valuable, 15);
             Container container20 = new Container(ContainerType.Valuable, 20);
             List<Container> expected = new List<Container>();
+            List<Container> containers = new List<Container>();
             expected.Add(container20);
             expected.Add(container15);
             expected.Add(container10);
+            containers.Add(container15);
+            containers.Add(container10);
+            containers.Add(container20);
             //Act
-            unsortedlist.AddContainer(container15);
-            unsortedlist.AddContainer(container10);
-            unsortedlist.AddContainer(container20);
+            unsortedlist.AddContainers(containers);
             unsortedlist.SortListContainers();
             //Assert
             CollectionAssert.AreEqual(expected, unsortedlist.SortedContainerList);
@@ -60,13 +64,15 @@ namespace Containership.Tests
             Container container15 = new Container(ContainerType.Coolable, 15);
             Container container20 = new Container(ContainerType.Coolable, 20);
             List<Container> expected = new List<Container>();
+            List<Container> containers = new List<Container>();
             expected.Add(container20);
             expected.Add(container15);
             expected.Add(container10);
+            containers.Add(container15);
+            containers.Add(container10);
+            containers.Add(container20);
             //Act
-            unsortedlist.AddContainer(container15);
-            unsortedlist.AddContainer(container10);
-            unsortedlist.AddContainer(container20);
+            unsortedlist.AddContainers(containers);
             unsortedlist.SortListContainers();
             //Assert
             CollectionAssert.AreEqual(expected, unsortedlist.SortedContainerList);
@@ -83,6 +89,7 @@ namespace Containership.Tests
             Container valuable25 = new Container(ContainerType.Valuable, 25);
             Container coolable20= new Container(ContainerType.Coolable, 20);
             Container coolable25 = new Container(ContainerType.Coolable, 25);
+            List<Container> containers = new List<Container>();
             List<Container> expected = new List<Container>();
             expected.Add(coolable25);
             expected.Add(coolable20);
@@ -90,13 +97,14 @@ namespace Containership.Tests
             expected.Add(normal10);
             expected.Add(valuable25);
             expected.Add(valuable15);
+            containers.Add(valuable25);
+            containers.Add(coolable20);
+            containers.Add(coolable25);
+            containers.Add(normal15);
+            containers.Add(valuable15);
+            containers.Add(normal10);
             //Act
-            unsortedlist.AddContainer(valuable25);
-            unsortedlist.AddContainer(coolable20);
-            unsortedlist.AddContainer(coolable25);
-            unsortedlist.AddContainer(normal15);
-            unsortedlist.AddContainer(valuable15);
-            unsortedlist.AddContainer(normal10);
+            unsortedlist.AddContainers(containers);
             unsortedlist.SortListContainers();
             //Assert
             CollectionAssert.AreEqual(expected, unsortedlist.SortedContainerList);

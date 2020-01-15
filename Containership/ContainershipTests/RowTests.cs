@@ -131,10 +131,34 @@ namespace Containership.Tests
         public void GetWeightTest()
         {
             //Assert
-            Row row = new Row(0);
+            Row row = new Row(3);
+            Container container = new Container(ContainerType.Normal, 30);
+            int expected = 120;
             //Act
-            row.GetWeight();
+            row.AddNormal(container);
+            row.AddNormal(container);
+            row.AddNormal(container);
+            row.AddNormal(container);
+            int result = row.GetWeight();
             //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod()]
+        public void GetColdColumnWeight()
+        {
+            //Assert
+            Row row = new Row(2);
+            Container container = new Container(ContainerType.Normal,30);
+            Container coolable = new Container(ContainerType.Coolable, 30);
+            int expected = 60;
+            //Act
+            row.AddCold(coolable);
+            row.AddCold(coolable);
+            row.AddNormal(container);
+            int result = row.GetColdColumnWeight();
+            //Arrange
+            Assert.AreEqual(expected, result);
         }
     }
 }

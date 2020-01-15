@@ -6,7 +6,6 @@ namespace Containership
 {
     public class Row
     {
-        private static bool left = true;
         private List<Column> columns = new List<Column>();
 
         public List<Column> Columns
@@ -76,6 +75,11 @@ namespace Containership
             }
 
             return weight;
+        }
+
+        public int GetColdColumnWeight()
+        {
+            return columns[0].TotalWeight;
         }
 
         private int LowestColumnWeight()
