@@ -70,7 +70,7 @@ namespace Containership
                                 break;
                             }
                         }
-                        else if(container.ContainerType == ContainerType.Coolable)
+                        else if(container.ContainerType == ContainerType.Valuable)
                         {
                             if(IsValuableAdded(position, container) == false)
                             {
