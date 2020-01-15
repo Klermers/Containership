@@ -12,8 +12,8 @@ namespace Containership.Tests
         [TestMethod()]
         public void BuildURLTest()
         {
-          /*  //Arrange
-            StringBuilder stringBuilder = new StringBuilder();
+          //Arrange
+            StringBuild stringBuilder = new StringBuild();
             List<Row> rows = new List<Row>();
             Container container1 = new Container(ContainerType.Normal, 4);
             Container container2 = new Container(ContainerType.Coolable, 10);
@@ -28,16 +28,15 @@ namespace Containership.Tests
             rows.Add(new Row(2));
             rows.Add(new Row(2));
 
-            rows[0].Stacks[0].AddContainer(container1);
-            rows[0].Stacks[0].AddContainer(container2);
-            rows[1].Stacks[0].AddContainer(container3);
-            rows[0].Stacks[1].AddContainer(container4);
+            rows[0].Columns[0].IsContainerAdded(container2);
+            rows[0].Columns[0].IsContainerAdded(container1);
+            rows[1].Columns[0].IsContainerAdded(container3);
+            rows[0].Columns[1].IsContainerAdded(container4);
 
             string urlReturn = stringBuilder.BuildURL(rows, width, length);
 
             //Assert
             Assert.AreEqual(urlExpected, urlReturn);
-            */
         }
     }
 }

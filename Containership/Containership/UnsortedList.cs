@@ -82,19 +82,21 @@ namespace Containership
 
         public void SortListContainers()
         {
+            List<Container> containers = new List<Container>();
+
             foreach (var coldcontainer in GetListContainer())
             {
-                SortedContainerList.Add(coldcontainer);
+                containers.Add(coldcontainer);
             }
             foreach (var container in GetListColdContainer())
             {
-                SortedContainerList.Add(container);
+                containers.Add(container);
             }
             foreach(var richcontainer in GetListRichContainers())
             {
-                SortedContainerList.Add(richcontainer);
+                containers.Add(richcontainer);
             }
-            
+            SortedContainerList = containers;           
         }
     }
 }

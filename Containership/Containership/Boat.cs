@@ -50,13 +50,17 @@ namespace Containership
                     {
                         if (container.ContainerType == ContainerType.Normal)
                         {
-                            Rows[position].AddNormal(container);
-                            break;
+                            if(Rows[position].AddNormal(container))
+                            {
+                                break;
+                            }
                         }
                         else if (container.ContainerType == ContainerType.Valuable)
                         {
-                            Rows[position].AddValuable(container);
-                            break;
+                            if(Rows[position].AddValuable(container) == true)
+                            {
+                                break;
+                            }
                         }
                     }
                     if (container.ContainerType == ContainerType.Valuable)
