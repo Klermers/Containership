@@ -101,5 +101,15 @@ namespace Containership
             }
             SortedContainerList = containers;           
         }
+
+        public int GetWeight()
+        {
+            int tobeaddedweight = 0;
+            foreach(var contianer in unsortedcontainerslist)
+            {
+                tobeaddedweight += contianer.Weight;
+            }
+            return tobeaddedweight;
+        }
     }
 }

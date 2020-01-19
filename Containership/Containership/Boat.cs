@@ -6,14 +6,12 @@ namespace Containership
 {
     public class Boat
     {
-        private string name;
         private int length;
         private int width;
-        private int weight;
         private List<Row> Rows = new List<Row>();
-        private List<Container> InsertContainers = new List<Container>();
         private List<Container> RemainingContainers = new List<Container>();
         private UnsortedList unsortedlist = new UnsortedList();
+        public int Surface { get { return width * length; } }
 
         public StringBuild StringBuilder
         {
@@ -21,12 +19,10 @@ namespace Containership
             private set;
         }
 
-        public Boat(string name, int length, int width, int weight )
+        public Boat(int length, int width)
         {
-            this.name = name;
             this.length = length;
             this.width = width;
-            this.weight = weight;
             StringBuilder = new StringBuild();
             for (int i = 0; i < width; i++)
             {
@@ -41,7 +37,7 @@ namespace Containership
 
         public void AddContainers()
         {
-            foreach(var container in InsertContainers)
+            foreach(var container in unsortedlist.SortedContainerList)
             {
                 for(int position = 0; position <= length; position++)
                 {
@@ -121,15 +117,10 @@ namespace Containership
             return false;
         }
 
-        public void AddFilteredContainers()
-        {
-            unsortedlist.SortListContainers();
-            InsertContainers = unsortedlist.SortedContainerList;
-        }
-
         public void AddContainersToUnsorted(List<Container> containers)
         {
             unsortedlist.AddContainers(containers);
+            unsortedlist.SortListContainers();
         }
 
         public string CheckRemainingContainers()
@@ -166,17 +157,14 @@ namespace Containership
 
         public string CheckWeight()
         {
-            int weight = 0;
-            foreach(var container in InsertContainers)
-            {
-                weight += container.Weight;
-            }
+            int minWeight = Surface * 75;
+            int maxWeight = Surface * 150;
 
-            if(weight < this.weight/2)
+            if (unsortedlist.GetWeight() < minWeight)
             {
                 return $"There isnt enough weight for the boat";
             }
-            else if(weight > this.weight)
+            else if(unsortedlist.GetWeight() > maxWeight)
             {
                 return $"There is too much weight for the boat";
             }
