@@ -13,7 +13,7 @@ namespace Containership.Tests
         public void IsTheContainerAddedTest_Weight_Returntrue()
         {
             //Arrange
-            Column column = new Column(1);
+            Column column = new Column();
             Container container = new Container(ContainerType.Normal, 30);
             //Act
             bool result = column.IsContainerAdded(container);
@@ -25,7 +25,7 @@ namespace Containership.Tests
         public void IsTheContainerAddedTest_Weight_Returnfalse()
         {
             //Arrange
-            Column column = new Column(1);
+            Column column = new Column();
             Container container = new Container(ContainerType.Normal, 30);
             //Act
             column.IsContainerAdded(container);
@@ -42,7 +42,7 @@ namespace Containership.Tests
         public void IsThereARichContainerTest_containerType_ReturnsTrue()
         {
             //Arrange
-            Column column = new Column(1);
+            Column column = new Column();
             Container container = new Container(ContainerType.Valuable, 30);
             //Act
             column.IsContainerAdded(container);
@@ -55,7 +55,7 @@ namespace Containership.Tests
         public void IsThereARichContainerTest_containerType_ReturnsFalse()
         {
             //Arrange
-            Column column = new Column(1);
+            Column column = new Column();
             Container container = new Container(ContainerType.Valuable, 30);
             //Act
             bool result = column.IsThereARichContainer();
@@ -67,7 +67,7 @@ namespace Containership.Tests
         public void BuildStacksURLTest_Substring_ReturnSubstring()
         {
             //Arrange
-            Column column = new Column(0);
+            Column column = new Column();
             Container container = new Container(ContainerType.Normal, 30);
             string urlExpected = "1-1-1";
 
@@ -87,7 +87,7 @@ namespace Containership.Tests
         public void BuildWeigthsURLTest_Substring_ReturnSubstring()
         {
             //Arrange
-            Column column = new Column(1);
+            Column column = new Column();
             Container container = new Container(ContainerType.Normal, 20);
             string urlExpected = "20-20-20";
 

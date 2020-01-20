@@ -84,7 +84,7 @@ namespace Containership.Tests
             containers.Add(container);
             containers.Add(container);
             containers.Add(container);
-            string expected = $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length=2&width=2&stacks=2,2/2,2&weights=30,30/30,30";
+            string expected = $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length=2&width=2&stacks=2,2/2,&weights=30,30/30,";
             //Act 
             boat.AddContainersToUnsorted(containers);
             boat.AddContainers();
@@ -93,7 +93,7 @@ namespace Containership.Tests
             Assert.AreEqual(expected, result);
         }
         [TestMethod()]
-        public void AddContainersTest_AddContainers_ReturnEqual()
+        public void AddContainersTest_AddContainersToEvenGrid_ReturnEqual()
         {
             //Arrange 
             Boat boat = new Boat(2, 2);
@@ -111,13 +111,75 @@ namespace Containership.Tests
             containers.Add(valuable);
             containers.Add(valuable);
             containers.Add(valuable);
-            string expected = $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length=2&width=2&stacks=3,2/2,2&weights=30,30/30,30";
+            string expected = $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length=2&width=2&stacks=3-3-1-2,1-1-2/3-3-2,1-1-2&weights=30-30-30-30,30-30-30/30-30-30,30-30-30";
             //Act 
             boat.AddContainersToUnsorted(containers);
             boat.AddContainers();
             string result = boat.GetURL();
             //Assrt
             Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod()]
+        public void AddContainersTest_NoValuableContainersSideBySide_ReturnEqual()
+        {
+            //Arrange 
+            Boat boat = new Boat(3, 3);
+            List<Container> containers = new List<Container>();
+            Container valuable = new Container(ContainerType.Valuable, 100);
+            containers.Add(valuable);
+            containers.Add(valuable);
+            containers.Add(valuable);
+            containers.Add(valuable);
+            containers.Add(valuable);
+            containers.Add(valuable);
+            string expected = $"https://i872272core.venus.fhict.nl/ContainerVisualizer/index.html?length=3&width=3&stacks=2,,2/2,,2/2,,2&weights=100,,100/100,,100/100,,100";
+            //Act 
+            boat.AddContainersToUnsorted(containers);
+            boat.AddContainers();
+            string result = boat.GetURL();
+            //Assrt
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod()]
+        public void AddContainersTest_BoatWorksCorrectly()
+        {
+            //Arrange 
+            Boat boat = new Boat(6, 7);
+            List<Container> containers = new List<Container>();
+            Container normal1 = new Container(ContainerType.Normal, 20);
+            Container normal2 = new Container(ContainerType.Normal, 25);
+            Container valuable = new Container(ContainerType.Valuable, 10);
+            Container coolable = new Container(ContainerType.Coolable, 15);
+            string expected = null;
+            for (int i = 0; i < 80; i++)
+            {
+                containers.Add(normal1);
+            }
+            for (int i = 0; i < 50; i++)
+            {
+                containers.Add(normal2);
+            }
+            for (int i = 0; i < 12; i++)
+            {
+                containers.Add(valuable);
+            }
+            for (int i = 0; i < 33; i++)
+            {
+                containers.Add(coolable);
+            }
+            //Act
+            boat.AddContainersToUnsorted(containers);
+            string resultweight = boat.CheckWeight();
+            boat.AddContainers();
+            string resultbalance = boat.BoatBalance();
+            string remainingcontainers = boat.CheckRemainingContainers();
+            string urlstring = boat.GetURL();
+            //Assert
+
+            Assert.AreEqual(expected,resultweight);
+            Assert.AreEqual(expected, resultbalance);
         }
 
         [TestMethod()]
@@ -149,6 +211,22 @@ namespace Containership.Tests
         }
 
         [TestMethod()]
+        public void CheckWeightTest_EnoughWeight_ReturnString()
+        {
+            //Arrange
+            Boat boat = new Boat(1, 1);
+            List<Container> containers = new List<Container>();
+            Container container = new Container(ContainerType.Normal, 100);
+            string expected = null;
+            //Act
+            containers.Add(container);
+            boat.AddContainersToUnsorted(containers);
+            string result = boat.CheckWeight();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod()]
         public void BoatBalanceTest_BoatBalanceOff_Returnstring()
         {
             //Arrange
@@ -168,7 +246,7 @@ namespace Containership.Tests
         }
 
         [TestMethod()]
-        public void BoatBalanceTest_BoatBalance_Returnstring()
+        public void BoatBalanceTest_BoatBalanced_Returnstring()
         {
             //Arrange
             Boat boat = new Boat(1, 1);
@@ -219,5 +297,6 @@ namespace Containership.Tests
             //Assert
             Assert.AreEqual(expected, result);
         }
+
     }
 }

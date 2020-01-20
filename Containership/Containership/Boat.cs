@@ -39,56 +39,50 @@ namespace Containership
         {
             foreach(var container in unsortedlist.SortedContainerList)
             {
-                for(int position = 0; position <= length; position++)
+                if(container.ContainerType== ContainerType.Coolable)
                 {
-                    if(container.ContainerType == ContainerType.Normal)
-                    {
-                        if(Rows[position].GetWeight() == LowestRowWeight())
-                        {
-                            if (IsNormalContainerAdded(position, container) == false)
-                            {
-                                RemainingContainers.Add(container);
-                                break;
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                    }
-                    if(position != Rows.Count)
-                    {
-                        if (container.ContainerType == ContainerType.Coolable)
-                        {
-                            if(IsColdAdded(position, container) == false)
-                            {
-                                RemainingContainers.Add(container);
-                                break;
-                            }
-                        }
-                        else if(container.ContainerType == ContainerType.Valuable)
-                        {
-                            if(IsValuableAdded(position, container) == false)
-                            {
-                                RemainingContainers.Add(container);
-                                break;
-                            }
-                        }
-                    }
-                    else
+                    if (IsColdAdded(container) == false)
                     {
                         RemainingContainers.Add(container);
-                        break;
+                    }
+                }
+                else if(container.ContainerType == ContainerType.Normal)
+                {
+                    if (IsNormalContainerAdded(container) == false)
+                    {
+                        RemainingContainers.Add(container);
+                    }
+                }
+                else if(container.ContainerType == ContainerType.Valuable)
+                {
+                    if (IsValuableAdded(container) == false)
+                    {
+                        RemainingContainers.Add(container);
                     }
                 }
             }
         }
 
-        private bool IsNormalContainerAdded(int position, Container container)
+        private bool IsNormalContainerAdded(Container container)
         {
-            if (Rows[position].GetWeight() == LowestRowWeight())
+            for(int position = 0; position <= length; position++)
             {
-                if (Rows[position].AddNormal(container) == true)
+                if (Rows[position].GetWeight() == LowestRowWeight())
+                {
+                    if (Rows[position].IsNormalAdded(container) == true)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool IsValuableAdded(Container container)
+        {
+            foreach(var row in Rows)
+            {
+                if (row.IsValuableAdded(container) == true)
                 {
                     return true;
                 }
@@ -96,22 +90,16 @@ namespace Containership
             return false;
         }
 
-        private bool IsValuableAdded(int position, Container container)
+        private bool IsColdAdded(Container container)
         {
-            if (Rows[position].AddValuable(container) == true)
+            for (int position = 0; position <= length; position++)
             {
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsColdAdded(int position, Container container)
-        {
-            if (Rows[position].GetColdColumnWeight() == LowestColdColumn())
-            {
-                if (Rows[position].AddCold(container) == true)
+                if (Rows[position].GetColdColumnWeight() == LowestColdColumn())
                 {
-                    return true;
+                    if (Rows[position].IsColdAdded(container) == true)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

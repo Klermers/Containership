@@ -15,13 +15,13 @@ namespace Containership
         {
             for (int columnamount = 1; columnamount <= shiplength; columnamount++)
             {
-                Column column = new Column(columnamount);
+                Column column = new Column();
                 columns.Add(column);
             }
 
         }
 
-        public bool AddNormal(Container container)
+        public bool IsNormalAdded(Container container)
         {
             for (int position = 0; position < columns.Count; position++)
             {
@@ -33,7 +33,7 @@ namespace Containership
             return false;
         }
 
-        public bool AddValuable(Container container)
+        public bool IsValuableAdded(Container container)
         {
             for (int position = 0; position < columns.Count; position++)
             {
@@ -48,15 +48,14 @@ namespace Containership
             return false;
         }
 
-        public bool AddCold(Container container)
+        public bool IsColdAdded(Container container)
         {
             return columns[0].IsContainerAdded(container);
         }
 
         private bool IsValuableAddible(int position)
         {
-            if (position == 0 ||position == columns.Count -1||columns[position].Containers.Count >= columns[position - 1].Containers.Count
-              || columns[position].Containers.Count >= columns[position + 1].Containers.Count)
+            if (position == 0 ||position == columns.Count -1||columns[position].Containercount >= columns[position - 1].Containercount)
             {
                 return true;
             }

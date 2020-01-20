@@ -71,7 +71,7 @@ namespace Containership
         {
             if (container.ContainerType == ContainerType.Normal)
             {
-                return ContainerType.Coolable;
+                return ContainerType.Normal;
             }
             else if (container.ContainerType == ContainerType.Coolable)
             {
@@ -87,11 +87,11 @@ namespace Containership
         {
             List<Container> containers = new List<Container>();
 
-            foreach (var coldcontainer in GetListContainer())
+            foreach (var coldcontainer in GetListColdContainer())
             {
                 containers.Add(coldcontainer);
             }
-            foreach (var container in GetListColdContainer())
+            foreach (var container in GetListContainer())
             {
                 containers.Add(container);
             }

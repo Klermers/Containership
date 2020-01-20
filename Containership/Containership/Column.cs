@@ -7,36 +7,23 @@ namespace Containership
 {
     public class Column
     {
-        private readonly int y_position;
+        private List<Container> containers = new List<Container>();
         private int totalWeight = 0;
-        private List<Container> columnContainers = new List<Container>();
 
-        public int Y_position
+        public int Containercount
         {
-            get { return y_position; }
+            get { return containers.Count; }
         }
-
         public int TotalWeight
         {
             get { return totalWeight; }
         }
 
-        public List<Container> Containers
-        {
-            get { return columnContainers; }
-        }
-
-        public Column(int yposition)
-        {
-            y_position = yposition;
-        }
-
-
         public bool IsContainerAdded(Container container)
         {
             if (WeightOnContainer() + container.Weight <= 120)
             {
-                columnContainers.Add(container);
+                containers.Add(container);
                 totalWeight += container.Weight;
                 return true;
             }
@@ -48,16 +35,16 @@ namespace Containership
             int newtotalweight = 0;
             List<Container> newcontainerlist = new List<Container>();
 
-            for (int position = 1; position <= columnContainers.Count; position++)
+            for (int position = 1; position <= containers.Count; position++)
             {
-                newtotalweight += columnContainers[position - 1].Weight;
+                newtotalweight += containers[position - 1].Weight;
             }
             return newtotalweight;
         }
 
         public bool IsThereARichContainer()
         {
-            foreach(var container in columnContainers)
+            foreach(var container in containers)
             {
                 if(container.ContainerType == ContainerType.Valuable)
                 {
@@ -71,7 +58,7 @@ namespace Containership
         {
             string urlStacks = "";
 
-            foreach (Container container in columnContainers)
+            foreach (Container container in containers)
             {
                 urlStacks += $"-{(int)container.ContainerType}";
             }
@@ -90,7 +77,7 @@ namespace Containership
         {
             string urlWeights = "";
 
-            foreach (Container container in columnContainers)
+            foreach (Container container in containers)
             {
                 urlWeights += $"-{container.Weight}";
             }
